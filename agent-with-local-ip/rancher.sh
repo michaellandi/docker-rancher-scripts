@@ -23,4 +23,4 @@ echo "### Version  = $AGENT_VERSION"
 echo "### Agent IP = $LOCAL_IP"
 
 echo "# Deploying Rancher Agent"
-sudo docker run -d –e "CATTLE_AGENT_IP=$LOCAL_IP" --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL
+sudo docker run –e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL
