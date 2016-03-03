@@ -24,7 +24,4 @@ echo "### Agent IP = $LOCAL_IP"
 
 # Rancher Agent Installation
 echo "# Installing Rancher Agent"
-echo "### Install Docker"
-sudo apt-get install docker -y
-echo "### Deploying Rancher Agent"
-sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL
+sudo apt-get install docker -y && sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL
