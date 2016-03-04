@@ -31,9 +31,9 @@ echo "# Installing Rancher Agent"
 while [ $STATUS -gt 0 ]
 do
   sleep $SLEEP
-  OUTPUT=`sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL`
-  echo $OUTPUT
+  OUTPUT=`sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL 2>&1`
   STATUS=$?
+  echo $OUTPUT
 done
 
 exit $STATUS
