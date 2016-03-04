@@ -28,13 +28,12 @@ echo "### Agent IP = $LOCAL_IP"
 echo "# Debug"
 ps -ef
 echo "# Installing Rancher Agent"
-echo "### Installing Docker"
 while [ $STATUS -gt 0 ]
 do
   sleep $SLEEP
-  sudo apt-get install docker -y
+  OUTPUT=`sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL`
+  echo $OUTPUT
   STATUS=$?
 done
-echo "### Deploying Rancher Agent as Docker Container"
-sudo docker run -e "CATTLE_AGENT_IP=$LOCAL_IP" -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:$AGENT_VERSION $HOST_URL
-exit $?
+
+exit $STATUS
