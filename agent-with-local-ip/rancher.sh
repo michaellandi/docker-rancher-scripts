@@ -3,7 +3,7 @@
 # Github : kvaes
 # Version : 0.1
 
-apt-get install -y docker.io
+sudo apt-get install -y docker.io
 
 # Variable Check
 echo "# Checking Variables"
